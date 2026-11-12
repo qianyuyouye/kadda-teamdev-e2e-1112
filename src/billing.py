@@ -14,3 +14,4 @@ def total_amount(items: Optional[Iterable[Number]]) -> Number:
     if not items:
         return 0
     return sum(items)
+# 329 补认 PR 实跑
