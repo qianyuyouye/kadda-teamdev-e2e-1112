@@ -27,7 +27,6 @@ def total_amount(items: Optional[Iterable[Number]]) -> Number:
     if not items:
         return 0
     return sum(items)
- wave/1/ch-wave-e4f3516b7e7e
 
 
 def _to_decimal(value: Any) -> Decimal:
