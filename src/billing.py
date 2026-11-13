@@ -27,6 +27,7 @@ def total_amount(items: Optional[Iterable[Number]]) -> Number:
     if not items:
         return 0
     return sum(items)
+ wave/1/ch-wave-e4f3516b7e7e
 
 
 def _to_decimal(value: Any) -> Decimal:
@@ -107,3 +108,6 @@ def calculate_bill(order_amount: Number, coupon: Any = None) -> dict:
     discount = _quantize(min(discount, order))
     payable = _quantize(order - discount)
     return _result(order, discount, payable)
+
+# 329 补认 PR 实跑
+ main
