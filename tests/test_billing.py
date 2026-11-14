@@ -189,3 +189,23 @@ def test_bill_upstream_exception_returns_error(monkeypatch):
     assert result["error"] == ERROR_INVALID_COUPON
     assert result["discount_amount"] == Decimal("0.00")
     assert result["payable_amount"] == Decimal("0.00")
+
+
+# ---------------------------------------------------------------------------
+# total_amount：负数明细按 0 计
+# ---------------------------------------------------------------------------
+
+
+def test_total_amount_negative_detail_counts_as_zero():
+    """负数明细按 0 计，正数照常相加：total_amount([10, -5, 3]) == 13。"""
+    assert total_amount([10, -5, 3]) == 13
+
+
+def test_total_amount_all_negative_details_is_zero():
+    """全部为负数明细时总额为 0，不是负数。"""
+    assert total_amount([-10, -2.5]) == 0
+
+
+def test_total_amount_negative_detail_with_decimals():
+    """Decimal 明细同样适用：负数按 0 计，正数正常保留精度相加。"""
+    assert total_amount([Decimal("1.10"), Decimal("-2.20"), Decimal("3.30")]) == Decimal("4.40")
