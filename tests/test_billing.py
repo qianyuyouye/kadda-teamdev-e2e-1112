@@ -209,3 +209,12 @@ def test_total_amount_all_negative_details_is_zero():
 def test_total_amount_negative_detail_with_decimals():
     """Decimal 明细同样适用：负数按 0 计，正数正常保留精度相加。"""
     assert total_amount([Decimal("1.10"), Decimal("-2.20"), Decimal("3.30")]) == Decimal("4.40")
+
+
+def test_total_amount_none_item_is_skipped():
+    """None 明细被跳过，其余明细照常相加：total_amount([10, None, 3]) == 13。"""
+    assert total_amount([10, None, 3]) == 13
+    assert total_amount([None, 10, None, 3, None]) == 13
+    assert total_amount([None]) == 0
+    assert total_amount([None, None]) == 0
+    assert total_amount([None, -5, None, 8]) == 8

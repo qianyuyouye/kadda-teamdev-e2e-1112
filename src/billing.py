@@ -25,11 +25,12 @@ ERROR_INVALID_COUPON = "优惠券参数无效或优惠券计算失败"
 def total_amount(items: Optional[Iterable[Number]]) -> Number:
     """账单总额：明细为空（None 或空列表）时返回 0；
 
-    非空时返回各项金额之和，其中负数明细按 0 计（正数照常相加）。
+    非空时返回各项金额之和，其中负数明细按 0 计（正数照常相加），
+    值为 None 的明细直接跳过（不参与求和）。
     """
     if not items:
         return 0
-    return sum(item if item > 0 else 0 for item in items)
+    return sum(item if item is not None and item > 0 else 0 for item in items)
 
 
 def _to_decimal(value: Any) -> Decimal:
