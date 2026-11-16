@@ -36,3 +36,6 @@ def calculate_coupon_deduction(coupon_amount: Number, order_amount: Number) -> D
     coupon = calculate_coupon_amount(coupon_amount)
     order = calculate_coupon_amount(order_amount)
     return min(coupon, order)
+
+
+# R9 实跑 1116：并行 PR b
