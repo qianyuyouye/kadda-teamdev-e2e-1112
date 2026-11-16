@@ -13,3 +13,9 @@ jobs:
           python-version: "3.12"
       - run: pip install pytest
       - run: python -m pytest -q
+      - name: Kadda coverage gate
+        run: |
+          curl --fail-with-body -sS -X POST "https://livespec.litchon.net/api/ci/webhook" \
+            -H "Authorization: Bearer ${{ secrets.KADDA_CI_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"commit_sha": "${{ github.sha }}", "ref": "${{ github.ref }}"}'
