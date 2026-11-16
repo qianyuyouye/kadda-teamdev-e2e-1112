@@ -29,3 +29,10 @@ def calculate_coupon_amount(amount: Number) -> Decimal:
         value = _ZERO
 
     return value.quantize(_CENT, rounding=ROUND_HALF_UP)
+
+
+def calculate_coupon_deduction(coupon_amount: Number, order_amount: Number) -> Decimal:
+    """优惠券实际抵扣金额：面额大于订单金额时以订单金额为上限，实付不为负。"""
+    coupon = calculate_coupon_amount(coupon_amount)
+    order = calculate_coupon_amount(order_amount)
+    return min(coupon, order)
