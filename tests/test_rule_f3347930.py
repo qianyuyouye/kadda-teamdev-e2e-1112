@@ -15,3 +15,8 @@ def test_rule_f3347930():
     assert calculate_coupon_deduction(30, 80) == Decimal("30.00")
     # 面额等于订单金额
     assert calculate_coupon_deduction(80, 80) == Decimal("80.00")
+
+
+def test_rule_f3347930_小额():
+    # 面额只比订单多 0.01：仍以订单金额封顶
+    assert calculate_coupon_deduction("50.01", "50.00") == Decimal("50.00")
