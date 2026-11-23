@@ -39,3 +39,5 @@ def calculate_coupon_deduction(coupon_amount: Number, order_amount: Number) -> D
 
 
 # R9 实跑 1116：并行 PR a
+
+# 2026-11-23 代码与节点绑定闭环实跑：平台之外的直接提交，用来验证节点出现「实现已变」
